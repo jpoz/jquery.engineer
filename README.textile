@@ -2,14 +2,25 @@ h1. JQuery Objects
 
 Objective way to create objects and manage object's behavior with JQuery.
 
-h2. Goal API:
+h2. Goal API (Not implemented yet... just you wait. It will be):
 
 <pre>
   <code>
-    $('.new_butter').create('butter');
-    $('.butter').behaveLike('butter');
-
+    $.objects.define('butter', {
+      defaults: {'brand':'none'},
+      structure: function(options) {
+        return $('<div/>', { html:options.brand });
+      },
+      behavior: function(self) {
+        self.click( function() { alert('BUTTER BE CLICKED')} );
+      }
+    });
+    
     var butter = $.objects.make('butter', {'brand':'Kraft'});
     $('body').append(butter);
+
+    $('.butter').behaveLike('butter');
+
+    $('.butter_holder').makeInto('butter');
   </code>
 </pre>
