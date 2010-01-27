@@ -1,18 +1,18 @@
 $.objects.define('slick_rick', {
-  defaults: {
-    css: {
-      border: "1px dashed #f0f3fa",
-      padding: ".25em",
-      height: "25px",
-      width: "100px",
-      padding: "5px 5px 5px 5px",
-      color: "#f3f0f3"
-    },
-    html: "<p>slick rick wants you to click</p>"
-  },
+  defaults: { 'innertext':'click me' },
   
   structure: function(options) {
-    return $("<div />", options);
+    return $("<div />", {
+      css: {
+        border: "1px dashed #f0f3fa",
+        padding: ".25em",
+        height: "25px",
+        width: "100px",
+        padding: "5px 5px 5px 5px",
+        color: "#f3f0f3"
+      },
+      html: "<p>slick rick wants you to " + options.innertext + "</p>"
+    });
   },
   
   behavior: function(self) {
