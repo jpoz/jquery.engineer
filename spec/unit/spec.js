@@ -1,7 +1,7 @@
 
 describe '$.objects'
   before_each
-    $.objects.butter = {
+    $.objects.define('butter', {
       defaults: {
         'brand':'Kraft'
       },
@@ -20,7 +20,28 @@ describe '$.objects'
             $(this).html('I got clicked!')
           });
       }
-    };
+    });
+  end
+  
+  describe '.define()'
+    it 'should define a new object'
+      $.objects.define('milk', {
+        defaults: {},
+        structure: function(options) { $('<div/>'); },
+        behavior: function(self) {}
+      });
+      
+      $.objects.milk.should.not.be_undefined;
+    end
+    
+    it 'should have all configurations have defaults'
+      $.objects.define('milk', {});
+      
+      $.objects.milk.should.not.be_undefined;
+      $.objects.milk.defaults.should.not.be_undefined;
+      $.objects.milk.structure.should.not.be_undefined;
+      $.objects.milk.behavior.should.not.be_undefined;
+    end
   end
   
   describe '.make()'
@@ -47,52 +68,29 @@ describe '$.objects'
     describe 'given an object definition'
       it 'should return a new default representation from the given definition'
         var def = $.objects.butter;
-        var new_butter = $.objects.make(def).toString();
-        var factory_representation = $.objects.butter.structure($.objects.butter.defaults).toString();
+        var new_butter = $.objects.make(def) + "";
+        var factory_representation = $.objects.butter.structure($.objects.butter.defaults) + "";
         
         new_butter.should.equal factory_representation
       end
     end
   end
-
-  describe '.create()'
-    it 'should return an object with the object defintion'
-      $.objects.create('butter').obj_def.should.equal $.objects.butter
-    end
-    
-    it 'should return an object with a from function'
-      $.objects.create('butter').from.should.be_a Function
-    end
-    
-    describe '.from()'
   
-      describe 'given an object'
-        it 'should return a new instance'
-          var options = {'brand':'Dairy Gold'};
-          var temp_object = $('<div/>', {'brand':'Dairy Gold'});
-          $.objects.create('butter').from(temp_object).toString().should.eql $.objects.butter.structure(options).toString()
-        end
-        
-        it 'should fall back to defaults if the object given does not have an attribute'
-          var temp_object = $('<div/>');
-          var new_butter  = $.objects.create('butter').from(temp_object).html()
-          var factory_representation = $.objects.butter.structure($.objects.butter.defaults).html()
-
-          new_butter.should.equal factory_representation
-        end
-      end
+  describe '$().makeInto()'
+    it 'should replace given selector with an instance of the object'
+      $('body').append('<div id="butter_holder" brand="Sweet Cream"></div>');
       
-      describe 'given a selector'
-        it 'should replace all objects found by the selector with new instances'
-          var temp_object = $('<div/>', {'class':'new_butter', 'brand':'Albertsons'});
-          $('body').append(temp_object);
-          
-          $.objects.create('butter').from('.new_butter');
-          
-          $('#awesome').html().should.eql('Albertsons')
-        end
-      end
+      $('#butter_holder').makeInto('butter');
+      $('#butter_holder').length.should.eql 0
     end
   end
-
+  
+  describe '$().behaveLike()'
+    it 'should add the behavior of the object'
+      $('body').append('<div id="butter_holder" brand="Sweet Cream"></div>');
+      
+      $('#butter_holder').behaveLike('butter');
+      $('#butter_holder').click.should.be_a Function
+    end
+  end
 end

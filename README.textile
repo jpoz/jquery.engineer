@@ -2,7 +2,7 @@ h1. JQuery Objects
 
 Objective way to create objects and manage object's behavior with JQuery.
 
-h2. Goal API (Not implemented yet... just you wait. It will be):
+h2. API
 
 <pre>
   <code>
