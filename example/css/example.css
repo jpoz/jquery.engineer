@@ -1,0 +1,41 @@
+html {
+  background: #838383;
+}
+
+body {
+  font-family: helvetica, arial sans-serif;
+}
+
+#doc2 {
+  background: #747474;
+  border: 1px solid #f3f3f3;
+  border-radius: 5px; padding: 5px 5px 5px 15px;
+}
+
+#ft {
+  padding-top: 3em;
+}
+
+#example_div {
+  margin-top: 15px;
+  padding: 5px;
+  border: 1px solid #f3f3f3;
+}
+
+h1 {
+  color: #B3C4D0;
+  text-shadow: 1px 1px 1px #000;
+}
+
+.example {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  border: 1px dashed #f3f3f3;
+  border-radius: 5px; 
+  padding: 1em;
+}
+
+.right {
+  float: right;
+}
