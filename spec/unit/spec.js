@@ -42,6 +42,22 @@ describe '$.objects'
       $.objects.milk.structure.should.not.be_undefined;
       $.objects.milk.behavior.should.not.be_undefined;
     end
+    
+    it 'should not override another definition'
+      $.objects.define('milk', {
+        defaults: {},
+        structure: function(options) { return $('<div/>'); },
+        behavior: function(self) {}
+      });
+      
+      $.objects.define('not_milk', {
+        structure: function(options) { return $('<span/>'); },
+      });
+      
+      $.objects.milk.should.not.be_undefined;
+      returned_object = $.objects.milk.structure({});
+      returned_object[0]['HTMLBodyElement'].should.eql($('<div/>')[0]['HTMLBodyElement'])
+    end
   end
   
   describe '.make()'
