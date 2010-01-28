@@ -4,23 +4,67 @@ Objective way to create objects and manage object's behavior with JQuery.
 
 h2. API
 
+To define a new object with JQuery Objects use the define method. Each JQuery Object has three attributes:
+
+# structure - Defines the html structure of the object.
+# defaults - These are the default values of options passed to the structure.
+# behavior - Defines how the object will behave.
+
+In the example defines a new objects named "photo_tile". Which displays a photo and when you click on the photo alerts you of it's title.
+
 <pre>
   <code>
-    $.objects.define('butter', {
-      defaults: {'brand':'none'},
+    $.objects.define('picture_tile', {
       structure: function(options) {
-        return $('<div/>', { html:options.brand });
+        var image = $('<img/>', {src:options.photo_url, alt:photo_title})
+        return $('<div/>', { html:image, class:photo_tile });
       },
+      
+      defaults: {'photo_tile':'Untitled',
+                 'photo_url':'/images/missing.png'},
+
       behavior: function(self) {
-        self.click( function() { alert('BUTTER BE CLICKED')} );
+        self.click(function() { 
+          alert('This image is named '+$('img',self).attr('alt'); ) 
+        });
       }
     });
-    
-    var butter = $.objects.make('butter', {'brand':'Kraft'});
-    $('body').append(butter);
-
-    $('.butter').behaveLike('butter');
-
-    $('.butter_holder').makeInto('butter');
   </code>
 </pre>
+
+Now that we have an object defined we can make a new one. To make a new "photo_tile" we use the <code>make()</code> command:
+
+<pre>
+  <code>
+    var new_photo_tile = $.objects.make('picture_tile', { src:'/images/1.png', alt:'My trip to Vegas' });
+    $('body').append(new_photo_tile);
+  </code>
+</pre>
+
+You can also use the "photo_tile" object to add functionality to already existing DOM elemenets:
+
+To just add the behavior of an Object:
+
+<pre>
+  <code>
+    $('.photo').behaveLike('photo_tile');
+  </code>
+</pre>
+
+Or you can use html attributes on existing DOM elements to define new instances of an Objects. Imagine you have the following HTML:
+
+<pre>
+ <code>
+   <div class='placeholder' photo_url='/images/2.png' photo_title='My trip to New York'>Loading Image...</div>
+ </code>
+</pre>
+
+You can make your placeholder element into a new Object:
+
+<pre>
+ <code>
+   $('.placeholder').makeInto('photo_tile');
+ </code>
+</pre>
+
+
