@@ -11,7 +11,7 @@ $.objects.define('photo_tile',{
         title: "_MG_1030",
     },
     structure: function(options) {
-        var photo_base = 'http://farm' + options.farm + '.static.flickr.com/' + options.server + '/' + options.id + '_' + options.secret +'_t.jpg';
+        var photo_base = 'http://farm' + options.farm + '.static.flickr.com/' + options.server + '/' + options.id + '_' + options.secret;
         var photo_thumb = photo_base + '_t.jpg'
         var photo_url = photo_base + '.jpg'
         
