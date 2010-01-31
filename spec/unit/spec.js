@@ -6,6 +6,8 @@ describe '$.objects'
         'brand':'Kraft'
       },
       structure: function(options) {
+        this.fat_content = '12g';
+        
         return $('<div/>', {
           id:'awesome',
           css: {
@@ -68,10 +70,15 @@ describe '$.objects'
     end
     
     it 'should add behavior to the new default representation'
-      var new_butter = $.objects.make('butter')
+      var new_butter = $.objects.make('butter');
       new_butter.click.should.be_a Function
       new_butter.click()
       new_butter.html().should.equal 'I got clicked!'
+    end
+    
+    it 'should call itself in the context of the object getting returned'
+      var new_butter = $.objects.make('butter');
+      new_butter.fat_content.should.eql('12g');
     end
     
     describe 'given and object literal as the second argument'
