@@ -16,8 +16,8 @@ describe '$.objects'
           html: options.brand
         });
       },
-      behavior: function(self) {
-        self
+      behavior: function(options) {
+        this
           .click(function() {
             $(this).html('I got clicked!')
           });
@@ -81,6 +81,13 @@ describe '$.objects'
       new_butter.fat_content.should.eql('12g');
     end
     
+    it 'should set the context of behavior to the returned object make by the strucure'
+        $.objects.milk.behavior = function() { return this.behavior_context = this }
+        
+        var new_milk = $.objects.make('milk');
+        new_milk.behavior_context.should.eql(new_milk);
+    end
+    
     describe 'given and object literal as the second argument'
       it 'should create a new representation with the object literal as the options'
         var new_butter = $.objects.make('butter', {'brand':'Butterzilla'});
@@ -97,6 +104,7 @@ describe '$.objects'
         new_butter.should.equal factory_representation
       end
     end
+    
   end
   
   describe '$().makeInto()'

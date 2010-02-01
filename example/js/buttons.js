@@ -10,8 +10,8 @@ $.objects.define('button', {
 });
 
 $.objects.define('new_button_creator', {
-  behavior: function(self) {
-    self.
+  behavior: function(options) {
+    this.
     click(function() {
         var text = $('#button_text').attr('value');
         var color = $('#button_color').attr('value');

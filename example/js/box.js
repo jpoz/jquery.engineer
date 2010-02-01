@@ -3,8 +3,8 @@ $.objects.define('close_tab', {
   structure: function(options) {
     return $('<a/>',{html:'>', href:'#'});
   },
-  behavior: function(self, options) {
-    self
+  behavior: function(options) {
+    this
     .click(function(event) {
       event.preventDefault();
       options.closeable.toggle();

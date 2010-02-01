@@ -16,15 +16,15 @@ In the example defines a new objects named "photo_tile". Which displays a photo 
   <code>
     $.objects.define('picture_tile', {
       structure: function(options) {
-        var image = $('<img/>', {src:options.photo_url, alt:photo_title})
-        return $('<div/>', { html:image, class:photo_tile });
+        this.image = $('<img/>', {src:options.photo_url, alt:photo_title})
+        return $('<div/>', { html:this.image, class:photo_tile });
       },
       
       defaults: {'photo_tile':'Untitled',
                  'photo_url':'/images/missing.png'},
 
-      behavior: function(self) {
-        self.click(function() { 
+      behavior: function(options) {
+        this.click(function() { 
           alert('This image is named '+$('img',self).attr('alt'); ) 
         });
       }

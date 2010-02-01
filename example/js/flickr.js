@@ -21,8 +21,8 @@ $.objects.define('photo_tile',{
             big_image: photo_url
         });
     },
-    behavior: function(self) {
-        self.click(function() {
+    behavior: function(options) {
+        this.click(function() {
             var big_image = $(self).attr('big_image')
             $('#image_holder').attr('src', big_image);
         });
@@ -35,8 +35,8 @@ $.objects.define('photo_search_box', {
     var search_box   = $('<input/>', {id:'photo_search'});
     return $('<form/>', { html: search_box}).append(input_button);
   },
-  behavior: function(self) {
-    self.submit(function(event) {
+  behavior: function(options) {
+    this.submit(function(event) {
       event.preventDefault();
       $('.photo_tile').remove();
       var searchTag = $('#photo_search').attr('value');
