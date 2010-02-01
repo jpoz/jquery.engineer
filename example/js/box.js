@@ -15,24 +15,19 @@ $.objects.define('close_tab', {
 $.objects.define('box', {
   defaults: { header_text:'Box', body_text:'Hello' },
   structure: function(options) {
-    var header = $('<div/>', {
+    this.header = $('<div/>', {
       'class':'box_header',
       html: options.header_text
     });
     
-    var body = $('<div/>', {
+    this.body_content = $('<div/>', {
       'class':'box_body',
       html: options.body_text
     });
   
-    var box = $('<div/>', {
+    return $('<div/>', {
       'class':'box'
-    }).append(header).append(body)
-    
-    box.head = header;
-    box.body_content = body;
-    
-    return box;
+    }).append(this.header).append(this.body_content);
   }
 });
 
@@ -42,7 +37,7 @@ $(document).ready(function() {
   $('body').append(new_box);
   
   var close_tab = $.objects.make('close_tab', { closeable:new_box.body_content} );
-  new_box.head.prepend(close_tab);
+  new_box.header.prepend(close_tab);
   
   $('.close_thingy').behaveLike('close_tab', {closeable:$('whatever')});
 });
