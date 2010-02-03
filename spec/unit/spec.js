@@ -17,7 +17,7 @@ describe '$.objects'
         });
       },
       behavior: function(options) {
-        this
+        $(this)
           .click(function() {
             $(this).html('I got clicked!')
           });
@@ -122,6 +122,18 @@ describe '$.objects'
       
       $('#butter_holder').behaveLike('butter');
       $('#butter_holder').click.should.be_a Function
+    end
+    
+    it 'should allow the addition of keys on the javascript object'
+      $.objects.define('taco',{
+        behavior: function(options) {
+          this.filling = 'WHO IS YOUR DADDY?';
+        }
+      });
+      
+      var butter_holder = $('#butter_holder');
+      butter_holder.behaveLike('taco');
+      butter_holder[0].filling.should.eql('WHO IS YOUR DADDY?');
     end
   end
 end

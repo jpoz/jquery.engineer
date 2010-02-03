@@ -1,0 +1,25 @@
+require 'rubygems'
+require 'httparty'
+
+class GoogleClosureCompiler
+  include HTTParty
+  base_uri 'closure-compiler.appspot.com'
+  
+  def compile()
+    GoogleClosureCompiler.post('/compile', :body => {
+      :compilation_level => "SIMPLE_OPTIMIZATIONS",
+      :output_format => "text",
+      :output_info => "compiled_code",
+      :js_code => File.read('lib/jquery.objects.js')
+    })
+  end
+end
+
+task :default => [:compile]
+
+task :compile do
+   File.open('lib/jquery.objects-min.js','w') do |file|
+     file.puts GoogleClosureCompiler.new.compile
+   end
+   puts "DONE"
+end
