@@ -14,7 +14,7 @@ All parts are optional.
 
 h3. $.objects.define()
 
-In the example defines a new objects named "photo_tile". Which displays a photo and when you click on the photo alerts you of it's title.
+The example below defines a new objects named "photo_tile". Which displays a photo and when you click on the photo alerts you of it's title.
 
 <pre>
   <code>
@@ -29,7 +29,7 @@ In the example defines a new objects named "photo_tile". Which displays a photo 
 
       behavior: function(options) {
         this.click(function() { 
-          alert('This image is named '+$('img',self).attr('alt'); ) 
+          alert('This image is named '+ options.photo_title; ) 
         });
       }
     });
@@ -38,30 +38,34 @@ In the example defines a new objects named "photo_tile". Which displays a photo 
 
 h3. $.objects.make()
 
-To create a "photo_tile" use the <code>make()</code> function. This will create a new instance of a photo tile with the options passed in that can then be appended to the page.
+To create a object use the <code>make()</code> function. The <code>make()</code> function takes two arguments: the object's key and options. The options given to <code>make()</code> are passed into both the structure and behavior functions. If the options do not include a key the default value will be used.
+
+The example below will create a new instance of the photo tile that was defined above.
 
 <pre>
   <code>
-    var new_photo_tile = $.objects.make('picture_tile', { src:'/images/1.png', alt:'My trip to Vegas' });
+    var new_photo_tile = $.objects.make('picture_tile', { photo_url:'/images/1.png', photo_title:'My trip to Vegas' });
     $('body').append(new_photo_tile);
   </code>
 </pre>
 
 h3. $('').behaveLike()
 
-You can also use the "photo_tile" object to add functionality to already existing DOM elements:
+To add only the functionality of an object to a DOM element use the <code>behaveLike()</code> function.
 
-You can just add a behavior to a DOM element by using the <code>behaveLike()</code> function.
+The example below will only add functionality and not change the element's structure.
 
 <pre>
   <code>
-    $('.photo').behaveLike('photo_tile');
+    $('.photo').behaveLike('photo_tile', { photo_title:'My trip to LA' });
   </code>
 </pre>
 
 h3. $('').makeInto()
 
-You can also use xhtml attributes on existing DOM elements to define new instances of an Objects. Imagine you have the following HTML:
+To replace an existing DOM element with new object use the <code>.makeInto()</code> function.
+
+The <code>.makeInto()</code> function uses xhtml attributes on the existing DOM element to define a new instance of an object. Imagine you have the following HTML:
 
 <pre>
  <code>
@@ -81,7 +85,7 @@ You can make your placeholder element into a new instance of a JQuery object by 
 
 h3. $('').send()
 
-JQuery Objects also allows you the ability to send messages to invoke functions between objects. Lets say I have a bunch of objects I'm going to want to collapse on my page. You can define a object with public methods by returning the definitions of those methods in your behavior function:
+JQuery Objects also allows you the ability to send messages to invoke functions between objects. Lets say I have a bunch of objects I'm going to want to collapse on my page. You can define an object with public methods by returning the definitions of those methods in your behavior function:
 
 <pre>
   <code>
@@ -100,7 +104,7 @@ JQuery Objects also allows you the ability to send messages to invoke functions 
   </code>
 </pre>
 
-Then add the behavior to each object you want to have that public method:
+Then add the behavior to each object you want:
 
 <pre>
   <code>
@@ -118,7 +122,7 @@ Then send the message "closeMe" to each element to invoke the functionality:
   </code>
 </pre>
 
-This will cause all the div that have the function <code>closeMe()</code> to hide themselves.
+This will cause all the divs that have the function <code>closeMe()</code> to hide themselves.
 
 h2. License
 
