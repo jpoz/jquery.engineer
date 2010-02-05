@@ -11,14 +11,14 @@ $.objects.define('button', {
 
 $.objects.define('new_button_creator', {
   behavior: function(options) {
-    this.
+    $(this).
     click(function() {
         var text = $('#button_text').attr('value');
         var color = $('#button_color').attr('value');
 
         var new_button = $.objects.make('button', {color:color, text:text });
         $('body').append(new_button);
-    })
+    });
   }
 });
 

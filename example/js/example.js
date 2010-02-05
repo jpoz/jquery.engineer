@@ -16,8 +16,9 @@ $.objects.define('slick_rick', {
   },
   
   behavior: function(options) {
-    this.click(function() { 
-      $(this).animate({
+    var self = $(this);
+    self.click(function() { 
+      self.animate({
           width:  ["+=50px", "swing"],
           height: ["+=30px", "swing"]
         }, 

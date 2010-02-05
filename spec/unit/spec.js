@@ -133,7 +133,7 @@ describe '$.objects'
       
       var butter_holder = $('#butter_holder');
       butter_holder.behaveLike('taco');
-      butter_holder[0].filling.should.eql('WHO IS YOUR DADDY?');
+      butter_holder.filling.should.eql('WHO IS YOUR DADDY?');
     end
   end
 end

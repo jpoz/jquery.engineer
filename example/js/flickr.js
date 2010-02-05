@@ -22,8 +22,8 @@ $.objects.define('photo_tile',{
         });
     },
     behavior: function(options) {
-        this.click(function() {
-            var big_image = $(self).attr('big_image')
+        $(this).click(function() {
+            var big_image = $(this).attr('big_image')
             $('#image_holder').attr('src', big_image);
         });
     }
@@ -36,16 +36,22 @@ $.objects.define('photo_search_box', {
     return $('<form/>', { html: search_box}).append(input_button);
   },
   behavior: function(options) {
-    this.submit(function(event) {
-      event.preventDefault();
-      $('.photo_tile').remove();
-      var searchTag = $('#photo_search').attr('value');
+    var self = this;
+    
+    this.getImagesFromTag = function(searchTag) {
       $.getJSON('http://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=' + apiKey + '&tags=' + searchTag + '&format=json&jsoncallback=?', function(data) {
           $.each(data.photos.photo,function(i,p) {
               var new_tile = $.objects.make('photo_tile', p);
               $('body').append(new_tile);
           });
       });
+    }
+    
+    $(this).submit(function(event) {
+      event.preventDefault();
+      $('.photo_tile').remove();
+      var searchTag = $('#photo_search').attr('value');
+      self.getImagesFromTag(searchTag);
     })
   }
 });
@@ -56,5 +62,6 @@ searchTag = 'awesome'
 
 $(document).ready(function() {
     var search = $.objects.make('photo_search_box');
+    search.getImagesFromTag('awesome');
     $('body').append(search);
 });

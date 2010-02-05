@@ -24,7 +24,9 @@ In the example defines a new objects named "photo_tile". Which displays a photo 
                  'photo_url':'/images/missing.png'},
 
       behavior: function(options) {
-        this.click(function() { 
+        var self = $(this);
+        
+        self.click(function() { 
           alert('This image is named '+$('img',self).attr('alt'); ) 
         });
       }
