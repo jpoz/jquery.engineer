@@ -1,10 +1,10 @@
-h1. JQuery Objects
+h1. JQuery Engineer
 
 Objective way to create and manage object's structure and behavior with JQuery.
 
 h2. API
 
-To define a new object with JQuery Objects use the define method. Each JQuery Object definition can have three parts:
+To define a new object with JQuery Engineer use the define method. Each JQuery Object definition can have three parts:
 
 # structure - Defines the html structure of the object.
 # defaults - These are the default values of options passed to the structure.
@@ -12,13 +12,13 @@ To define a new object with JQuery Objects use the define method. Each JQuery Ob
 
 All parts are optional.
 
-h3. $.objects.define()
+h3. $.engineer.define()
 
 The example below defines a new objects named "photo_tile". Which displays a photo and when you click on the photo alerts you of it's title.
 
 <pre>
   <code>
-    $.objects.define('picture_tile', {
+    $.engineer.define('picture_tile', {
       structure: function(options) {
         this.image = $('<img/>', {src:options.photo_url, alt:photo_title})
         return $('<div/>', { html:this.image, class:photo_tile });
@@ -36,7 +36,7 @@ The example below defines a new objects named "photo_tile". Which displays a pho
   </code>
 </pre>
 
-h3. $.objects.make()
+h3. $.engineer.make()
 
 To create a object use the <code>make()</code> function. The <code>make()</code> function takes two arguments: the object's key and options. The options given to <code>make()</code> are passed into both the structure and behavior functions. If the options do not include a key the default value will be used.
 
@@ -44,7 +44,7 @@ The example below will create a new instance of the photo tile that was defined 
 
 <pre>
   <code>
-    var new_photo_tile = $.objects.make('picture_tile', { photo_url:'/images/1.png', photo_title:'My trip to Vegas' });
+    var new_photo_tile = $.engineer.make('picture_tile', { photo_url:'/images/1.png', photo_title:'My trip to Vegas' });
     $('body').append(new_photo_tile);
   </code>
 </pre>
@@ -89,7 +89,7 @@ JQuery Objects also allows you the ability to send messages to invoke functions 
 
 <pre>
   <code>
-    $.objects.define('collapsable',{
+    $.engineer.define('collapsable',{
       behavior: function(options) {
         var self = this;
         publicMethods = {};

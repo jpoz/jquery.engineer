@@ -1,4 +1,4 @@
-$.objects.define('slick_rick', {
+$.engineer.define('slick_rick', {
   defaults: { 'innertext':'click me' },
   
   structure: function(options) {
@@ -30,7 +30,7 @@ $.objects.define('slick_rick', {
 
 $(function() {
   $('input.add_a_new_object').click(function() {
-    var new_slick_rick = $.objects.make('slick_rick');
+    var new_slick_rick = $.engineer.make('slick_rick');
     $(this).siblings('.example_target').append(new_slick_rick).show("slow");
   });
   

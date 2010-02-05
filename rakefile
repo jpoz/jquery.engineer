@@ -10,7 +10,7 @@ class GoogleClosureCompiler
       :compilation_level => "SIMPLE_OPTIMIZATIONS",
       :output_format => "text",
       :output_info => "compiled_code",
-      :js_code => File.read('lib/jquery.objects.js')
+      :js_code => File.read('lib/jquery.engineer.js')
     })
   end
 end
@@ -18,7 +18,7 @@ end
 task :default => [:compile]
 
 task :compile do
-   File.open('lib/jquery.objects-min.js','w') do |file|
+   File.open('lib/jquery.engineer-min.js','w') do |file|
      file.puts GoogleClosureCompiler.new.compile
    end
    puts "DONE"

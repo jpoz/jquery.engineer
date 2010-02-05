@@ -1,4 +1,4 @@
-$.objects.define('close_tab', {
+$.engineer.define('close_tab', {
   defaults: { closeable: $(this) },
   structure: function(options) {
     return $('<a/>',{html:'>', href:'#'});
@@ -12,7 +12,7 @@ $.objects.define('close_tab', {
   }
 });
 
-$.objects.define('box', {
+$.engineer.define('box', {
   defaults: { header_text:'Box', body_text:'Hello' },
   structure: function(options) {
     this.header = $('<div/>', {
@@ -33,10 +33,10 @@ $.objects.define('box', {
 
 $(document).ready(function() {
   var somecontent = 'Well hello there internet user. Did you know that the internet is a bunch of tubes? Well it is so be careful not to fill up the tubes';
-  var new_box = $.objects.make('box', {header_text:'Howdy', body_text: somecontent});
+  var new_box = $.engineer.make('box', {header_text:'Howdy', body_text: somecontent});
   $('body').append(new_box);
   
-  var close_tab = $.objects.make('close_tab', { closeable:new_box.body_content} );
+  var close_tab = $.engineer.make('close_tab', { closeable:new_box.body_content} );
   new_box.header.prepend(close_tab);
   
   $('.close_thingy').behaveLike('close_tab', {closeable:$('whatever')});

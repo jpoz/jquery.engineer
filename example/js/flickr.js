@@ -1,4 +1,4 @@
-$.objects.define('photo_tile',{
+$.engineer.define('photo_tile',{
     defaults: {
         farm: 5,
         id: "4311172196",
@@ -29,7 +29,7 @@ $.objects.define('photo_tile',{
     }
 });
 
-$.objects.define('photo_search_box', {
+$.engineer.define('photo_search_box', {
   structure: function(options) {
     var input_button = $('<input/>', {type:'submit', value:'Search'});
     var search_box   = $('<input/>', {id:'photo_search', value:'awesome'});
@@ -42,7 +42,7 @@ $.objects.define('photo_search_box', {
     publicMethods.getImagesFromTag = function(searchTag) {
       $.getJSON('http://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=' + apiKey + '&tags=' + searchTag + '&format=json&jsoncallback=?', function(data) {
           $.each(data.photos.photo,function(i,p) {
-              var new_tile = $.objects.make('photo_tile', p);
+              var new_tile = $.engineer.make('photo_tile', p);
               $('body').append(new_tile);
           });
       });
@@ -64,7 +64,7 @@ apiKey = '72b014c8881560f7370899e91d3a41aa'
 searchTag = 'awesome'
 
 $(document).ready(function() {
-    var search = $.objects.make('photo_search_box');
+    var search = $.engineer.make('photo_search_box');
     search.send('getImagesFromTag','awesome');
     $('body').append(search);
 });

@@ -1,4 +1,4 @@
-$.objects.define('message_box',{
+$.engineer.define('message_box',{
   defaults: {html:""},
   structure: function(options) {
     return $('<div/>', { html: options.html, css: { padding: '30px', border: '1px solid black' } });
@@ -29,11 +29,11 @@ $.objects.define('message_box',{
 
 
 $(document).ready(function() {
-  var boxes = $.objects.make('message_box',{
-    html: $.objects.make('message_box',{
-      html: $.objects.make('message_box',{
-        html: $.objects.make('message_box',{
-          html: $.objects.make('message_box')
+  var boxes = $.engineer.make('message_box',{
+    html: $.engineer.make('message_box',{
+      html: $.engineer.make('message_box',{
+        html: $.engineer.make('message_box',{
+          html: $.engineer.make('message_box')
         })
       })
     })

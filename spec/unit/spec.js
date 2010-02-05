@@ -1,7 +1,7 @@
 
-describe '$.objects'
+describe '$.engineer'
   before_each
-    $.objects.define('butter', {
+    $.engineer.define('butter', {
       defaults: {
         'brand':'Kraft'
       },
@@ -33,72 +33,72 @@ describe '$.objects'
   
   describe '.define()'
     it 'should define a new object'
-      $.objects.define('milk', {
+      $.engineer.define('milk', {
         defaults: {},
         structure: function(options) { $('<div/>'); },
         behavior: function(self) {}
       });
       
-      $.objects.milk.should.not.be_undefined;
+      $.engineer.milk.should.not.be_undefined;
     end
     
     it 'should have all configurations have defaults'
-      $.objects.define('milk', {});
+      $.engineer.define('milk', {});
       
-      $.objects.milk.should.not.be_undefined;
-      $.objects.milk.defaults.should.not.be_undefined;
-      $.objects.milk.structure.should.not.be_undefined;
-      $.objects.milk.behavior.should.not.be_undefined;
+      $.engineer.milk.should.not.be_undefined;
+      $.engineer.milk.defaults.should.not.be_undefined;
+      $.engineer.milk.structure.should.not.be_undefined;
+      $.engineer.milk.behavior.should.not.be_undefined;
     end
     
     it 'should not override another definition'
-      $.objects.define('milk', {
+      $.engineer.define('milk', {
         defaults: {},
         structure: function(options) { return $('<div/>'); },
         behavior: function(self) {}
       });
       
-      $.objects.define('not_milk', {
+      $.engineer.define('not_milk', {
         structure: function(options) { return $('<span/>'); },
       });
       
-      $.objects.milk.should.not.be_undefined;
-      returned_object = $.objects.milk.structure({});
+      $.engineer.milk.should.not.be_undefined;
+      returned_object = $.engineer.milk.structure({});
       returned_object[0]['HTMLBodyElement'].should.eql($('<div/>')[0]['HTMLBodyElement'])
     end
   end
   
   describe '.make()'
     it 'should return a new default representation of the class'
-      var new_butter = $.objects.make('butter').toString();
-      var factory_representation = $.objects.butter.structure($.objects.butter.defaults).toString();
+      var new_butter = $.engineer.make('butter').toString();
+      var factory_representation = $.engineer.butter.structure($.engineer.butter.defaults).toString();
       new_butter.should.equal factory_representation
     end
     
     it 'should add behavior to the new default representation'
-      var new_butter = $.objects.make('butter');
+      var new_butter = $.engineer.make('butter');
       new_butter.click.should.be_a Function
       new_butter.click()
       new_butter.html().should.equal 'I got clicked!'
     end
     
     it 'should call itself in the context of the object getting returned'
-      var new_butter = $.objects.make('butter');
+      var new_butter = $.engineer.make('butter');
       new_butter.fat_content.should.eql('12g');
     end
     
     describe 'given and object literal as the second argument'
       it 'should create a new representation with the object literal as the options'
-        var new_butter = $.objects.make('butter', {'brand':'Butterzilla'});
+        var new_butter = $.engineer.make('butter', {'brand':'Butterzilla'});
         new_butter.html().should.eql('Butterzilla');
       end
     end
     
     describe 'given an object definition'
       it 'should return a new default representation from the given definition'
-        var def = $.objects.butter;
-        var new_butter = $.objects.make(def) + "";
-        var factory_representation = $.objects.butter.structure($.objects.butter.defaults) + "";
+        var def = $.engineer.butter;
+        var new_butter = $.engineer.make(def) + "";
+        var factory_representation = $.engineer.butter.structure($.engineer.butter.defaults) + "";
         
         new_butter.should.equal factory_representation
       end
@@ -124,7 +124,7 @@ describe '$.objects'
     end
     
     it 'should define public methods on object by returning definitions'
-      $.objects.define('taco',{
+      $.engineer.define('taco',{
         behavior: function(options) {
           var self = this;
           return { filling: function() { self.attr('cheese','oh yeah!'); } }

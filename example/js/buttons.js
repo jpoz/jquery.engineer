@@ -1,4 +1,4 @@
-$.objects.define('button', {
+$.engineer.define('button', {
   defaults: { href:'#', text:'Click here', color:'#53995B', hovercolor:'#7DAE88' },
   structure: function(options) {
     return $('<a/>', {
@@ -50,7 +50,7 @@ $.objects.define('button', {
   }
 });
 
-$.objects.define('new_button_creator', {
+$.engineer.define('new_button_creator', {
   behavior: function(options) {
     this.
     click(function() {
@@ -58,14 +58,14 @@ $.objects.define('new_button_creator', {
         var color = $('#button_color').attr('value');
         var hcolor = $('#button_hovercolor').attr('value');
 
-        var new_button = $.objects.make('button', { color:color, text:text, hovercolor:hcolor });
+        var new_button = $.engineer.make('button', { color:color, text:text, hovercolor:hcolor });
         $('body').append(new_button);
     });
   }
 });
 
 $(document).ready(function() {
-  var new_button = $.objects.make('button', {color:'#768B99', hovercolor: '#999'}).behaveLike('new_button_creator');
+  var new_button = $.engineer.make('button', {color:'#768B99', hovercolor: '#999'}).behaveLike('new_button_creator');
   $('body').append(new_button);
 });
 
