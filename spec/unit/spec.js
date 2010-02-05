@@ -17,10 +17,16 @@ describe '$.objects'
         });
       },
       behavior: function(options) {
-        $(this)
+        var self = this
+          self
           .click(function() {
-            $(this).html('I got clicked!')
+            self.html('I got clicked!')
           });
+          
+        return {
+          add_garlic: function() { self.attr('garlic','oh yeah!'); },
+          add_fat: function(how_much) { self.attr( 'fat', how_much ); }
+        }
       }
     });
   end
@@ -81,13 +87,6 @@ describe '$.objects'
       new_butter.fat_content.should.eql('12g');
     end
     
-    it 'should set the context of behavior to the returned object make by the strucure'
-        $.objects.milk.behavior = function() { return this.behavior_context = this }
-        
-        var new_milk = $.objects.make('milk');
-        new_milk.behavior_context.should.eql(new_milk);
-    end
-    
     describe 'given and object literal as the second argument'
       it 'should create a new representation with the object literal as the options'
         var new_butter = $.objects.make('butter', {'brand':'Butterzilla'});
@@ -124,16 +123,41 @@ describe '$.objects'
       $('#butter_holder').click.should.be_a Function
     end
     
-    it 'should allow the addition of keys on the javascript object'
+    it 'should define public methods on object by returning definitions'
       $.objects.define('taco',{
         behavior: function(options) {
-          this.filling = 'WHO IS YOUR DADDY?';
+          var self = this;
+          return { filling: function() { self.attr('cheese','oh yeah!'); } }
         }
       });
       
       var butter_holder = $('#butter_holder');
       butter_holder.behaveLike('taco');
-      butter_holder.filling.should.eql('WHO IS YOUR DADDY?');
+      butter_holder.send('filling')
+      butter_holder.attr('cheese').should.eql('oh yeah!');
+    end
+  end
+  
+  describe '$().send()'
+    it 'should not throw an error if an object does not have a method'
+      $('body').send('this_does_not_exist');
+      // should_not.throw_error doesn't work. If it gets to the next line everythings okay.
+      true.should.be_true;
+    end
+    
+    it 'should preform given method on all objects'
+      $('body').append('<div id="butter_holder" brand="Sweet Cream"></div>');
+      $('#butter_holder').behaveLike('butter');
+      
+      $('#butter_holder').send('add_garlic');
+      $('#butter_holder').attr('garlic').should.eql('oh yeah!');
+    end
+    
+    it 'should pass arguments from send to the given method'
+      $('body').append('<div id="butter_holder" brand="Sweet Cream"></div>');
+      $('#butter_holder').behaveLike('butter');
+      
+      $('#butter_holder').send('add_fat','alot','i think').attr('fat').should.eql('alot');
     end
   end
 end

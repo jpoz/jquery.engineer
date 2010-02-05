@@ -32,13 +32,14 @@ $.objects.define('photo_tile',{
 $.objects.define('photo_search_box', {
   structure: function(options) {
     var input_button = $('<input/>', {type:'submit', value:'Search'});
-    var search_box   = $('<input/>', {id:'photo_search'});
+    var search_box   = $('<input/>', {id:'photo_search', value:'awesome'});
     return $('<form/>', { html: search_box}).append(input_button);
   },
   behavior: function(options) {
     var self = this;
+    var publicMethods = {};
     
-    this.getImagesFromTag = function(searchTag) {
+    publicMethods.getImagesFromTag = function(searchTag) {
       $.getJSON('http://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=' + apiKey + '&tags=' + searchTag + '&format=json&jsoncallback=?', function(data) {
           $.each(data.photos.photo,function(i,p) {
               var new_tile = $.objects.make('photo_tile', p);
@@ -47,12 +48,14 @@ $.objects.define('photo_search_box', {
       });
     }
     
-    $(this).submit(function(event) {
+    self.submit(function(event) {
       event.preventDefault();
       $('.photo_tile').remove();
       var searchTag = $('#photo_search').attr('value');
-      self.getImagesFromTag(searchTag);
-    })
+      publicMethods.getImagesFromTag(searchTag);
+    });
+    
+    return publicMethods;
   }
 });
 
@@ -62,6 +65,6 @@ searchTag = 'awesome'
 
 $(document).ready(function() {
     var search = $.objects.make('photo_search_box');
-    search.getImagesFromTag('awesome');
+    search.send('getImagesFromTag','awesome');
     $('body').append(search);
 });

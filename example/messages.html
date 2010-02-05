@@ -8,46 +8,18 @@
 	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
 	<script type="text/javascript" src="../lib/jquery.objects.js"></script>
 	<script type="text/javascript" src="js/messages.js"></script>
-  <link rel="stylesheet" type="text/css" href="css/buttons.css">
-  <style type="text/css" media="screen">
-    .image_box {
-        background: pink url('images/octocat.png');
-        width: 64px;
-        height: 64px;
-        display: inline-block;
-        margin: 5px;
-      }
-      .text_box {
-        width: 64px;
-        height: 64px;
-        display: inline-block;
-        margin: 5px;
-      }
-  </style>
 </head>
   <body>
-    
-    <a class='awesome red' href='#' id='close_all'>Close All</a>
-    <a class='awesome green' href='#' id='open_all'>Open All</a>
-    <div></div>
 
-    <div class='image_box' rel='1'> </div>
-    <div class='image_box' rel='2'> </div>
-    <div class='image_box' rel='3'> </div>
-    <div class='image_box' rel='4'> </div>
-    <div class='image_box' rel='5'> </div>
-    <div class='image_box' rel='6'> </div>
-    <div class='image_box' rel='7'> </div>
-    <div></div>
-    <div class='text_box'> This is a text box with some text in it</div>
-    <div class='text_box'> This is a text box with some text in it</div>
-    <div class='text_box'> This is a text box with some text in it</div>
-    <div class='text_box'> This is a text box with some text in it</div>
-    <div class='text_box'> This is a text box with some text in it</div>
-    <div class='text_box'> This is a text box with some text in it</div>
-    <div class='text_box'> This is a text box with some text in it</div>
-
-
+    <div style='padding: 10px;'>
+      How this page works:
+      <br/>
+      <br/>
+      The elements above are all divs create by jquery.objects. Each has a click function to selected the divs inside itself and send them and itself the message 'parentClicked'. The function 'parentClicked' is a public function that is defined by returning it in the behavior block. Each click will toggle the background color of the object you click on and it's children. JS for this page is below:
+      <br/>
+      <br/>
+      <script src="http://gist.github.com/295634.js?file=messages.js"></script>
+    </div>
   </body>
 </html>
 
