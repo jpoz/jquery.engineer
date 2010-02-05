@@ -58,7 +58,7 @@ $.objects.define('new_button_creator', {
         var color = $('#button_color').attr('value');
         var hcolor = $('#button_hovercolor').attr('value');
 
-        var new_button = $.objects.make('button', {color:color, text:text, hovercolor:hcolor });
+        var new_button = $.objects.make('button', { color:color, text:text, hovercolor:hcolor });
         $('body').append(new_button);
     });
   }
