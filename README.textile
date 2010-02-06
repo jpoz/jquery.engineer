@@ -1,8 +1,4 @@
-h1. jQuery enginner
-
-<img style='float:right;' src='http://www.pozdena.org/snaps/4207193e5239cf2530a1bac3883a2699.png'/>
-
-Objective way to create and manage object's structure and behavior with JQuery.
+| <h1>jQuery enginner</h1> Objective way to create and manage object's structure and behavior with JQuery. | <img style='float:right;' src='http://www.pozdena.org/snaps/4207193e5239cf2530a1bac3883a2699.png'/> |
 
 h2. API
 
