@@ -1,4 +1,6 @@
-<img src='http://www.pozdena.org/snaps/cf4d7680f3dcc68f70187bc9aeeb1716.png'/>
+h1. jQuery enginner
+
+<img style='float:right;' src='http://www.pozdena.org/snaps/4207193e5239cf2530a1bac3883a2699.png'/>
 
 Objective way to create and manage object's structure and behavior with JQuery.
 
