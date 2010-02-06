@@ -1,4 +1,4 @@
-h1. JQuery Engineer
+<img src='http://www.pozdena.org/snaps/cf4d7680f3dcc68f70187bc9aeeb1716.png'/>
 
 Objective way to create and manage object's structure and behavior with JQuery.
 
