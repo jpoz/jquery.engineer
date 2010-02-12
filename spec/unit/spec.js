@@ -87,6 +87,10 @@ describe '$.engineer'
       new_butter.fat_content.should.eql('12g');
     end
     
+    it 'should throw an error if the object is not defined'
+      -{ $.engineer.make('doesnotexist') }.should.throw_error 'The definition of doesnotexist either failed to define or does not exist.'
+    end
+    
     describe 'given and object literal as the second argument'
       it 'should create a new representation with the object literal as the options'
         var new_butter = $.engineer.make('butter', {'brand':'Butterzilla'});
