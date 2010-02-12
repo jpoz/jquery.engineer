@@ -1,4 +1,4 @@
-<h1>jQuery enginner</h1> Objective way to create and manage object's structure and behavior with JQuery.
+<h1>jQuery.engineer</h1> Objective way to create and manage object's structure and behavior with JQuery.
 
 h2. Download
 
