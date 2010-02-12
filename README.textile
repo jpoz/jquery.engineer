@@ -2,8 +2,8 @@
 
 h2. Download
 
-p."jquery.engineer.js":http://github.com/jpoz/jquery.engineer/raw/master/lib/jquery.engineer.js
-p."jquery.engineer-min.js":http://github.com/jpoz/jquery.engineer/raw/master/lib/jquery.engineer-min.js
+p. "jquery.engineer.js":http://github.com/jpoz/jquery.engineer/raw/master/lib/jquery.engineer.js
+p. "jquery.engineer-min.js":http://github.com/jpoz/jquery.engineer/raw/master/lib/jquery.engineer-min.js
 
 h2. API
 
