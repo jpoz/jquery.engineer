@@ -6,8 +6,6 @@ describe '$.engineer'
         'brand':'Kraft'
       },
       structure: function(options) {
-        this.fat_content = '12g';
-        
         return $('<div/>', {
           id:'awesome',
           css: {
@@ -29,6 +27,13 @@ describe '$.engineer'
         }
       }
     });
+    
+    (function($){
+     $.fn.gimmeHtml = function() {
+       var element = this;
+       return $('<div>').append(element.clone()).remove().html();
+     }
+    })(jQuery);
   end
   
   describe '.define()'
@@ -68,10 +73,22 @@ describe '$.engineer'
     end
   end
   
+  describe '.build()'
+    it 'should create a new DOM element'
+      var object = $.engineer.build('butter')
+      object.should_not.be_undefined
+    end
+    
+    it 'should not attach any behavior'
+      var object = $.engineer.build('butter')
+      object.data('publicMethods').should.be_undefined
+    end
+  end
+  
   describe '.make()'
     it 'should return a new default representation of the class'
-      var new_butter = $.engineer.make('butter').toString();
-      var factory_representation = $.engineer.butter.structure($.engineer.butter.defaults).toString();
+      var new_butter = $.engineer.make('butter').gimmeHtml();
+      var factory_representation = $.engineer.butter.structure($.engineer.butter.defaults).gimmeHtml();
       new_butter.should.equal factory_representation
     end
     
@@ -80,11 +97,6 @@ describe '$.engineer'
       new_butter.click.should.be_a Function
       new_butter.click()
       new_butter.html().should.equal 'I got clicked!'
-    end
-    
-    it 'should call itself in the context of the object getting returned'
-      var new_butter = $.engineer.make('butter');
-      new_butter.fat_content.should.eql('12g');
     end
     
     it 'should throw an error if the object is not defined'
@@ -116,6 +128,13 @@ describe '$.engineer'
       
       $('#butter_holder').makeInto('butter');
       $('#butter_holder').length.should.eql 0
+    end
+    
+    it 'should return a container of the new object(s)'
+      $('body').append('<div id="butter_holder" brand="Sweet Cream"></div>');
+      var old_obj = $('#butter_holder');
+      var new_obj = $('#butter_holder').makeInto('butter');
+      old_obj.gimmeHtml().should_not.eql(new_obj.gimmeHtml());
     end
   end
   
