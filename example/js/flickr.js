@@ -15,25 +15,49 @@ $.engineer.define('photo_tile',{
         var photo_thumb = photo_base + '_t.jpg'
         var photo_url = photo_base + '.jpg'
         
-        return $('<img/>',{
-            src: photo_thumb,
-            'class': 'photo_tile',
-            big_image: photo_url
+        var parent_div = $('<div/>', {
+          'class': 'photo_tile',
+          big_image: photo_url,
+          css: {
+            'background':'#E7E7E7',
+            'padding':'5px',
+            'border':'1px solid #696969',
+            'border-radius':'3px',
+            'display':'inline-block',
+            'margin':'5px'
+          }
         });
+        
+        var image_wrapper = $('<div/>', {
+          css: {
+            'width':'62px',
+            'height':'62px',
+            'overflow':'hidden'
+          },
+          html:$('<img/>',{src: photo_thumb})
+        });
+                
+        return parent_div.append(image_wrapper);
     },
     behavior: function(options) {
+        var image_holder = $('#image_holder');
         $(this).click(function() {
-            var big_image = $(this).attr('big_image')
-            $('#image_holder').attr('src', big_image);
+            var big_image = $(this).attr('big_image');
+            image_holder.attr('src', big_image);
+            image_holder.fadeOut(200,function() {
+              image_holder.fadeIn(200)
+            });
         });
     }
 });
 
 $.engineer.define('photo_search_box', {
   structure: function(options) {
+    var container = $('<span/>', {html:"Search flickr:"});
     var input_button = $('<input/>', {type:'submit', value:'Search'});
     var search_box   = $('<input/>', {id:'photo_search', value:'awesome'});
-    return $('<form/>', { html: search_box}).append(input_button);
+    container.append($('<form/>', { html: search_box}).append(input_button) );
+    return container
   },
   behavior: function(options) {
     var self = this;

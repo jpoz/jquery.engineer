@@ -6,6 +6,8 @@ describe '$.engineer'
         'brand':'Kraft'
       },
       structure: function(options) {
+        this.fat_content = '12g'
+        
         return $('<div/>', {
           id:'awesome',
           css: {
@@ -16,12 +18,14 @@ describe '$.engineer'
       },
       behavior: function(options) {
         var self = this
-          self
-          .click(function() {
-            self.html('I got clicked!')
-          });
+
+        self
+        .click(function() {
+          self.html('I got clicked!')
+        });
           
         return {
+          set_my_brand: function() { self.html(options.brand); },
           add_garlic: function() { self.attr('garlic','oh yeah!'); },
           add_fat: function(how_much) { self.attr( 'fat', how_much ); }
         }
@@ -83,6 +87,12 @@ describe '$.engineer'
       var object = $.engineer.build('butter')
       object.data('publicMethods').should.be_undefined
     end
+    
+    it 'should call itself in the context of the object getting returned'
+      var new_butter = $.engineer.build('butter');
+      new_butter.fat_content.should.eql('12g');
+    end
+ 
   end
   
   describe '.make()'
@@ -158,6 +168,16 @@ describe '$.engineer'
       butter_holder.behaveLike('taco');
       butter_holder.send('filling')
       butter_holder.attr('cheese').should.eql('oh yeah!');
+    end
+
+    it 'should pull xhtml attrs off the target object'
+      $('body').append('<div id="butter_holder" brand="Sweet Cream"></div>');
+      
+      var butter_holder = $('#butter_holder');
+      butter_holder.behaveLike('butter');
+      butter_holder.html().should.eql('');
+      butter_holder.send('set_my_brand')
+      butter_holder.html().should.eql('Sweet Cream');
     end
   end
   
