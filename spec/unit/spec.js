@@ -3,13 +3,14 @@ describe '$.engineer'
   before_each
     $.engineer.define('butter', {
       defaults: {
-        'brand':'Kraft'
+        'brand':'Kraft',
+        'objectId':'awesome'
       },
       structure: function(options) {
-        this.fat_content = '12g'
+        this.fat_content = '12g';
         
         return $('<div/>', {
-          id:'awesome',
+          id: options.objectId,
           css: {
             display:'none'
           },
@@ -17,7 +18,7 @@ describe '$.engineer'
         });
       },
       behavior: function(options) {
-        var self = this
+        var self = this;
 
         self
         .click(function() {
@@ -26,6 +27,7 @@ describe '$.engineer'
           
         return {
           set_my_brand: function() { self.html(options.brand); },
+          set_object_id: function() { self.attr('id', options.objectId); },
           add_garlic: function() { self.attr('garlic','oh yeah!'); },
           add_fat: function(how_much) { self.attr( 'fat', how_much ); }
         }
@@ -110,7 +112,7 @@ describe '$.engineer'
     end
     
     it 'should throw an error if the object is not defined'
-      -{ $.engineer.make('doesnotexist') }.should.throw_error 'The definition of doesnotexist either failed to define or does not exist.'
+      -{ $.engineer.make('doesnotexist') }.should.throw_error "The definition of 'doesnotexist' either failed to define or does not exist."
     end
     
     describe 'given and object literal as the second argument'
@@ -178,6 +180,28 @@ describe '$.engineer'
       butter_holder.html().should.eql('');
       butter_holder.send('set_my_brand')
       butter_holder.html().should.eql('Sweet Cream');
+    end
+    
+    it 'should use passed options as overrides for xhtml attrs'
+      $('body').append('<div id="butter_holder2" brand="Sweet Cream"></div>');
+      
+      var butter_holder = $('#butter_holder2');
+      butter_holder.behaveLike('butter', { brand:"Awesome" });
+      butter_holder.html().should.eql('');
+      butter_holder.send('set_my_brand')
+      butter_holder.html().should.eql('Awesome');
+    end
+  
+    it 'should merge options and xhtml attrs'
+      $('body').append('<div id="butter_holder2" brand="Sweet Cream"></div>');
+      
+      var butter_holder = $('#butter_holder2');
+      butter_holder.behaveLike('butter', { objectId:"beanz" });
+
+      butter_holder.send('set_my_brand')
+      butter_holder.send('set_object_id')
+      butter_holder.html().should.eql('Sweet Cream');
+      butter_holder.attr('id').should.eql('beanz');
     end
   end
   

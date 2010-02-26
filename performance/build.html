@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+   "http://www.w3.org/TR/html4/strict.dtd">
+
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>jquery.engineer example</title>
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.js"></script>
+	<script type="text/javascript" src="../lib/jquery.engineer.js"></script>
+	<script type="text/javascript">
+    
+    $.engineer.define('simple_element', {
+      structure: function() {
+        return $("<div>click me!</div>")
+      },
+      behavior: function() {
+        this.click(function() {
+          alert('Hello');
+        });
+      }
+    });
+    
+    $(document).ready(function() {
+      function runTest(test) {
+        var r = 0;
+        setTimeout(function(){
+          var start = (new Date).getTime(), diff = 0;
+
+          for (n = 0; diff < 1000; n++ ) {
+            test();
+            diff = (new Date).getTime() - start;
+          }
+          
+          if ( r++ < 4 ) {
+            $('#test').html('');
+            setTimeout( arguments.callee, 0 );
+          }
+          $('#results').prepend(n+"p/s ");
+        }, 0);
+      }
+
+      function test() {
+        $('#test').append($.engineer.build('simple_element',{ text: "Awesome" }));
+      }
+
+      runTest(test);
+    });
+	</script>
+  <link rel="stylesheet" type="text/css" href="css/box.css">
+</head>
+  <body>
+    <div id="results"></div>
+    <div id="test"></div>
+  </body>
+</html>
+

@@ -28,6 +28,15 @@ $.engineer.define('slick_rick', {
   }
 });
 
+$.engineer.define('buddy', {
+  defaults: {},
+  behavior: function( ){
+    this.click(function() {
+      alert("I'm your buddy");
+    });
+  }
+});
+
 $(function() {
   $('input.add_a_new_object').click(function() {
     var new_slick_rick = $.engineer.make('slick_rick');
@@ -35,6 +44,6 @@ $(function() {
   });
   
   $('input.decorate_an_object').click(function() {
-     $('#example_div').makeInto('slick_rick');
+     $('#example_div').makeInto('slick_rick').behaveLike('buddy');
   });
 });
