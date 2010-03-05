@@ -1,0 +1,65 @@
+body, html {
+  background: #E1E1E1;
+}
+
+* {
+  font-family: "Helvetica Neue";
+}
+
+a {
+  color: black;
+}
+p {
+  margin-top: 10px;
+  clear:both;
+}
+.gist{
+  margin-top: 5px;
+}
+
+#doc, #content {
+  -webkit-border-radius: 20px;
+  background: #EDEDED;
+}
+
+#doc {
+  width: 800px;
+  border: 1px solid #C3C3C3;
+  margin: 60px auto;
+}
+
+#content {
+  -webkit-box-shadow: 0px 0px 10px #F9F9F9;
+  margin: 2px;
+  border: 1px solid #E9E9E9;
+  padding: 60px;
+}
+
+#title {
+  font-family: "Times";
+  margin: -120px 0px 30px 0px;
+  font-size: 60px;
+  text-shadow: 2px 2px 2px #FFF;
+}
+
+.light_text {
+  color:#999;
+  font-style: italic;
+}
+.note {
+  color:#999;
+  font-size: 10px;
+}
+.note a {
+  color: #999;
+}
+.example{
+  width:90%;
+  margin: 10px auto;
+  clear:both;
+}
+.example .explaination {
+  text-align: right;
+  width: 80%;
+  float: right;
+}
