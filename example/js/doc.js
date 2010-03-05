@@ -31,6 +31,19 @@ $.engineer.define('blinky', {
   }
 });
 
+$.engineer.define('gbutton_link', {
+  defaults: {href:'/', text:'Click Me'},
+  structure: function(options) {
+    return $.engineer.make('gbutton', options)
+    // gbutton is part of the edison library http://github.com/jpoz/edison
+  },
+  behavior: function(options) {
+    this.click(function() {
+      window.location = options.href
+    })
+  }
+});
+
 
 $(document).ready(function() {
   $('.ex1').append(
@@ -45,7 +58,7 @@ $(document).ready(function() {
   
   $('.ex3')
   .append($.engineer.make('gbutton', {text:"This button will send all the other elements a message"}).click(function() {
-        $('*').send('blink');
+        $('div').send('blink');
       })
   )
   .append('<br/>').append('<br/>')
@@ -71,7 +84,15 @@ $(document).ready(function() {
       })
   )
   .append($.engineer.make('gbutton', {text:"$('p').send('blink');"}).click(function() {
-        $('*').send('blink');
+        $('p').send('blink');
   }));
 
+  $('.ex5')
+  .append($.engineer.build('gbutton', {text:"I don't do anything"}));
+  
+  $('.ex6')
+  .append($.engineer.make('gbutton', {text:"$('a').makeInto('gbutton_link')"}).click(function() {
+        $(this).siblings('a').makeInto('gbutton_link');
+      })
+  );
 });

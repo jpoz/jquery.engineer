@@ -28,7 +28,7 @@
         </div>
       </div>
       <br/>
-      <h2> Basic Defintion </h2>
+      <h2> $.engineer.make( object_type, [options] ) </h2>
       <p>
         jQuery.engineer allows you to define reusable objects structure and behavior.
       </p>
@@ -38,82 +38,127 @@
       <div class='example ex2'></div>
       <br/>
       <p>
-        were all created using same definition but with different options:
+        were all created using same definition but with different options.
+        To make new engineer objects use the make() method. The make() method optionally takes a second arguments which is the options passed into the objects definition.
       </p>
       <div class='explaination'>
         <script src="http://gist.github.com/315467.js?file=gistfile1.js"></script>
       </div>
+      
+      <h2> $.engineer.define( object_type, definition ) </h2>
       <p>
          Let's have a look at the definition. Each definition can have 3 parts: structure, behavior and defaults. But none of them are required.
       </p>
       <div class='explaination'>
         <script src="http://gist.github.com/315439.js?file=example_button.js"></script>
       </div>
-      <div class='light_text'>
-        Defining structure:
-      </div>
+      <h3>Structure: function([options]) { return object; }</h3>
       <p>
          Structure is defined as a function that can optionally take on parameter for options. What ever is returned from the structure function will be the objects DOM element(s). In the example above the structure function returns a div:
       </p>
       <div class='explaination'>
         <script src="http://gist.github.com/323012.js?file=gistfile1.js"></script>
       </div>
-      <div class='light_text'>
-        Defining behavior:
-      </div>
+      <h3>Behavior: function([options]) { return methods; }</h3>
       <p>
          Behavior is also defined as a function. The context of the behavior function is the jQuery object returned by the structure function. No need to wrap this in $(). Since this is already a jQuery object it's easy to bind events to your element. Notice that the elements created above all have a click function bound to them. Scroll up and give it a try.
       </p>
       <div class='explaination'>
         <script src="http://gist.github.com/323019.js?file=gistfile1.js"></script>
       </div>
-      <div class='light_text'>
-        Setting options:
-      </div>
       <p>
-         You may have noticed both the structure and behavior functions both take a single parameter: options. The defaults key sets up your default options. You can over ride these by passing new options when you create your element. These new options will be merged into your defaults.
+        The behavior function can return methods that can be invoke later. More on this in the <b>Object Methods</b> section.
+      </p>
+      <h3>Defaults:</h3>
+      <p>
+         You may have noticed both the structure and behavior functions both take a single parameter: options. Defaults set up the default options that are passed into structure and behavior. You can override these by passing new options when you create your element. These new options will be merged into your defaults.
       </p>
       <div class='explaination'>
         <script src="http://gist.github.com/323022.js?file=gistfile1.js"></script>
       </div>
       
-      <h2> Public Methods </h2>
+      <h2> Object Methods </h2>
       <p>
-        jQuery.engineer allows you to define public methods on elements.
+        jQuery.engineer allows you to define methods on elements.
       </p>
+      <p>
+        The object returned by the behavior function is an objects methods. For example if I wanted the method 'blink' on an element' I would do the following:
+      </p>
+      <div class='explaination'>
+        <script src="http://gist.github.com/323043.js?file=crazy.js"></script>
+      </div>
+      <p>
+        I define 'blink' on a object which is then return by the behavior function.
+      </p>
+      
+      <h2> $().send(method, [arg1, [arg2, [etc..]]]) </h2>
+      <p>
+        To invoke methods you just defined use send(). The send() method on all jQuery objects. If the object does not have a method it will not error so you can pass groups of objects public methods without worry. Lets looks at an example. The button below will try to invoke the 'blink' method on all divs, but only the divs below the button have 'blink' defined.
+      </p>
+      
       <div class='light_text'>
         for example:
       </div>
       <div class='example ex3'></div>
       <br/>
+      
       <p>
-        Each of the div below has the public method 'blink' defined on them. The button above them sends the message "blink", which executes their public methods. Public methods are defined by the object literal returned from the behavior function. Let's take a look:
+        Below is the code that creates the button above.
       </p>
-      <div class='explaination'>
-        <script src="http://gist.github.com/323043.js?file=crazy.js"></script>
-      </div>
-      <h2> send() </h2>
-      <p>
-        To invoke a public method you use send() method on any jQuery object(s). If the object does not have a public method it will not error so you can pass groups of objects public methods without worry. Here's the click function of the button above.
-      </p>
+      
       <div class='explaination'>
         <script src="http://gist.github.com/323057.js?file=send.js"></script>
       </div>
       <p>
-        Send can also pass arguments to public methods. If a public method takes arguments add them to the arguments you give send. For Rubyists this is a lot like the ruby send method.
-      </p>      
-      <h2> behaveLike() </h2>
+        Send can also pass arguments to methods. If a public method takes arguments add them to the arguments you give send. For Rubyists this is a lot like the ruby send method.
+      </p>
+      
+      <h2> $().behaveLike(object_type, [options]) </h2>
       <p>
-        Notice in the example above I don't define defaults or a structure. This is because I only want to use this definition to add behavior to elements. You can add the behavior of any engineer object to any jQuery object by using the behaveLike() function. So to make any element have the public method 'blink' I would do something like:
+        Notice in the example above I don't define defaults or a structure. This is because I only want to use this definition to add behavior to elements. You can add the behavior of any engineer object to any jQuery object by using the behaveLike() function. So to make some element have the method 'blink' I would do something like:
       </p>
       <div class='explaination'>
         <script src="http://gist.github.com/323051.js?file=behaveLike"></script>
       </div>
+      
+      <p>
+        Lets give this a try. The button to the right will call send('blink') on all paragraph elements. The button to the left will add the method 'blink' to all paragraph elements using the behaveLike() method.
+      </p>
+      
       <div class='light_text'>
-        for example:
+        click buttons below to invoke code:
       </div>
       <div class='example ex4'></div>
-      <div>
+      
+      <h2> $.engineer.build(object_type, [options]) </h2>
+      <p>
+        If you only want the structure of a engineer objects you can use the build() method. Below I've only created the structure of the button not the behavior. 
+      </p>
+      <div class='example ex5'></div>
+      
+      <h2> $().makeInto(object_type); </h2>
+      <p>
+        If you'd like to take some existing DOM elements and make them into jQuery engineer objects you can use the makeInto() method. 
+      </p>
+      <p>
+        You don't need to pass any options into makeInto. For each option defined in defaults, makeInto will take the xhtml attributes of the elements as it's options.
+      </p>
+      <div class='light_text'>
+        click button below to invoke code:
+      </div>
+      <div class='example ex6'>
+        <a href='http://www.google.com'>Google.com</a>
+        <a href='http://www.yahoo.com'>Yahoo.com</a>
+        <a href='http://www.github.com'>Github.com</a>
+        <a href='http://www.jpoz.net'>Jpoz.net</a>
+        <br />
+        <br />
+      </div>
+      <p>
+        The button above uses makeInto to replace the elements with new jQuery engineer objects. The definition for 'gbutton_link' is below:
+      </p>
+      <div class='explaination'>
+        <script src="http://gist.github.com/323191.js?file=makeInto.js"></script>
       </div>
     </div>
   </div>
