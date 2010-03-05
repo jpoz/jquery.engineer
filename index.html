@@ -24,7 +24,7 @@
       <div class='example ex1'>
         <div class='explaination'>
           was made with jQuery.engineer with a simple: $.engineer.make('gbutton');<br/>
-          <span class='note'>the definition of gbutton is part of the <a href='http://www.gihub.com/jpoz/edison'>edison</a> library</span>
+          <span class='note'>the definition of gbutton is part of the <a href='http://www.github.com/jpoz/edison'>edison</a> library</span>
         </div>
       </div>
       <br/>
@@ -159,6 +159,37 @@
       </p>
       <div class='explaination'>
         <script src="http://gist.github.com/323191.js?file=makeInto.js"></script>
+      </div>
+      
+      <h2> Create objects with Ajax and JSON </h2>
+      <p>
+        The real power behind engineer is you can have one place for your static elements definition and elements you're going to add via Ajax.
+      </p>
+      <p>
+        Let's say you're server returns the following JSON:
+      </p>
+      <div class='json'>
+        [<br/>
+          &nbsp;&nbsp;{"name":"James","website":"http://blog.jpoz.net/"},<br/>
+          &nbsp;&nbsp;{"name":"Dan","website":"http://www.whoahbot.com"},<br/>
+          &nbsp;&nbsp;{"name":"Max","website":"http://www.maxogden.com"}<br/>
+        ]
+      </div>
+      <p>
+        We can get this JSON via ajax and create new engineer objects from it:
+      </p>
+      <div class='explaination'>
+        <script src="http://gist.github.com/323255.js?file=json.js"></script>
+      </div>
+      <p>
+        Give it a try click the button below:
+      </p>
+      <div class='light_text'>
+        example:
+      </div>
+      <div class='example ex7'></div>
+      <div id='users'>
+        <span class='title'>Users:</span><br/><br/>
       </div>
     </div>
   </div>

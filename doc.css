@@ -42,6 +42,24 @@ p {
   text-shadow: 2px 2px 2px #FFF;
 }
 
+#users {
+  background: #E2F3FF;
+  border: 1px solid #000398;
+  padding: 10px;
+}
+
+#users .title {
+  font-size: 18px;
+  font-weight: bold;
+  color: #030535;
+}
+
+.json {
+  background: #FEFFE7;
+  border: 1px solid #989898;
+  padding: 10px;
+}
+
 .light_text {
   color:#999;
   font-style: italic;

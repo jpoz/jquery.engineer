@@ -95,4 +95,25 @@ $(document).ready(function() {
         $(this).siblings('a').makeInto('gbutton_link');
       })
   );
+  
+  $('.ex7')
+  .append(
+      $.engineer.make('gbutton', {text:"Ajax get for JSON"})
+        .click(function() {
+          var button = $(this);
+          
+          $.getJSON('buttons.json', function(users) {
+            var target_div = $('#users');
+            
+            $.each(users, function(i, user) {
+              target_div.append(
+                $.engineer.make('gbutton_link', {
+                  "text":user['name'],
+                  "href":user['website'] 
+                })
+              );
+            })
+          })
+        })
+  );
 });
