@@ -36,7 +36,7 @@ p {
 }
 
 #title {
-  font-family: "Times";
+  font-family: 'KitchenpoliceRegular', "Helvetica Neue", "Helvetica";
   margin: -120px 0px 30px 0px;
   font-size: 60px;
   text-shadow: 2px 2px 2px #FFF;
@@ -52,6 +52,10 @@ p {
   font-size: 18px;
   font-weight: bold;
   color: #030535;
+}
+#currentVersion {
+  font-size: 12px;
+  color: #999;
 }
 
 .json {

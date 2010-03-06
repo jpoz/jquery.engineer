@@ -123,4 +123,8 @@ $(document).ready(function() {
   .append($.engineer.make('example_button', {innerText:"and"}))
   .append($.engineer.make('example_button', {color:"#994547", innerText:"this element"}));
   
+  $.get('jquery.engineer.js', function(data, success) {
+    var version = /jQuery engineer v(.*)/.exec(data.toString())[1];
+    $('#version').text("v"+version);
+  }, 'text/html');
 });

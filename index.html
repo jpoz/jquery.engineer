@@ -6,9 +6,11 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<title>jquery.engineer documentation</title>
 	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
-	<script type="text/javascript" src="jquery.engineer-min.js"></script>
+	<script type="text/javascript" src="jquery.engineer.js"></script>
 	<script type="text/javascript" src="edison.js"></script>
 	<script type="text/javascript" src="doc.js"></script>
+	
+  <link rel="stylesheet" type="text/css" href="kitchenpoliceregular.css">
   <link rel="stylesheet" type="text/css" href="doc.css">
 </head>
 <body>
@@ -28,14 +30,27 @@
         </div>
       </div>
       <br/>
+      <div>
+        <h2>Why?</h2>
+        <p>Programming for the web can be a confusing tangle of old and new programming languages and techniques. Building rich applications for web browsers requires HTML, CSS, and JavaScript to all work together. In most projects their responsibilities overlap heavily. This juggling act can get hard quickly, especially when DOM objects with stateful JS behavior have to talk to each other or be duplicated.</p>
+         <p>JQuery.engineer aims to package complex interactive behaviors into modular, reusable and clear building blocks. With engineer, the question of responsibility becomes much easier, and code you already wrote can be reused, simplified and refactored with ease.</p> 
+      </div>
+      <div>
+        <h2>Download</h2>
+        <a href='http://github.com/jpoz/jquery.engineer/raw/master/lib/jquery.engineer.js'>jquery.engineer.js</a>      <br/>
+        <a href='http://github.com/jpoz/jquery.engineer/raw/master/lib/jquery.engineer-min.js'>jquery.engineer-min.js</a>      <br/>
+        <span id='currentVersion'>Current Version: <span id='version'>loading</span></span> <br/>
+
+
+      <br/>
+        Github: <a href='http://github.com/jpoz/jquery.engineer/'>http://github.com/jpoz/jquery.engineer/</a>      <br/>
+        
+      </div>
+      
       <div id='toc'>
-          <div>
-            <h2>Why?</h2>
-            <p>Programming for the web can be a confusing tangle of old and new programming languages and techniques. Building rich applications for web browsers requires HTML, CSS, and JavaScript to all work together. In most projects their responsibilities overlap heavily. This juggling act can get hard quickly, especially when DOM objects with stateful JS behavior have to talk to each other or be duplicated.</p>
-             <p>JQuery.engineer aims to package complex interactive behaviors into modular, reusable and clear building blocks. With engineer, the question of responsibility becomes much easier, and code you already wrote can be reused, simplified and refactored with ease.</p> 
-          </div>
+
           <div><h2>API:</h2>
-            <p><a href="#engineer-methods">Engineer Methods:</a>
+            <a href="#engineer-methods">Engineer Methods:</a>
               <ul>
                 <li><a href="#make-doc">make()</a></li>
                 <li><a href="#build-doc">build()</a></li>
@@ -46,15 +61,18 @@
                   <li><a href="#defaults-doc">defaults</a></li>
                 </ul>
               </ul>
-            </p>
-            <p><a href="#jquery-object-methods">JQuery Object Methods:</a>
+            <a href="#jquery-object-methods">JQuery Object Methods:</a>
               <ul>
                   <li><a href="#send-doc">send()</a></li>
                   <li><a href="#behaveLike-doc">behaveLike()</a></li>
                   <li><a href="#makeInto-doc">makeInto()</a></li>
               </ul>
-            </p>
           </div>
+          <a href="#create-objects-ajax">Create objects with Ajax and JSON</a><br/>
+          <br/>
+          <a href="#thanks">Thanks</a><br/>
+          <a href="#comments">Comments</a><br/>
+
       </div>
       <h2 id="engineer-methods">Engineer Methods</h2>
       <h2 id="make-doc">$.engineer.make( object_type, [options] )</h2>
@@ -196,12 +214,12 @@
         <script src="http://gist.github.com/323191.js?file=makeInto.js"></script>
       </div>
       
-      <h2> Create objects with Ajax and JSON </h2>
+      <h2 id='create-objects-ajax'> Create objects with Ajax and JSON </h2>
       <p>
         The real power behind engineer is you can have one place for your static elements definition and elements you're going to add via Ajax.
       </p>
       <p>
-        Let's say you're server returns the following JSON:
+        Let's say your server returns the following JSON:
       </p>
       <div class='json'>
         [<br/>
@@ -226,6 +244,12 @@
       <div id='users'>
         <span class='title'>Users:</span><br/><br/>
       </div>
+      
+      <h2 id='thanks'> Thanks: </h2>
+      <p>Many thanks to Andrew Kurtz for cleaning up this documentation and Dan Herrera for forcing me to put engineer out into the public</p>
+      
+      <h2 id='comments'> Comments: </h2>
+      <div id="disqus_thread"></div><script type="text/javascript" src="http://disqus.com/forums/jpozgithub/embed.js"></script><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript=jpozgithub">comments powered by Disqus.</a></noscript><a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
     </div>
   </div>
   
