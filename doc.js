@@ -116,4 +116,11 @@ $(document).ready(function() {
           })
         })
   );
+  
+  $('.ex8')
+  .append($.engineer.make('example_button'))
+  .append($.engineer.make('example_button', {innerText:"this element"}))
+  .append($.engineer.make('example_button', {innerText:"and"}))
+  .append($.engineer.make('example_button', {color:"#994547", innerText:"this element"}));
+  
 });
