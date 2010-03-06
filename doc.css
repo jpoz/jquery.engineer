@@ -36,10 +36,19 @@ p {
 }
 
 #title {
-  font-family: 'KitchenpoliceRegular', "Helvetica Neue", "Helvetica";
-  margin: -120px 0px 30px 0px;
+  margin: -135px 0px 30px 0px;
   font-size: 60px;
   text-shadow: 2px 2px 2px #FFF;
+}
+#title #jquery
+{
+  color: #999;
+  font-family: "Helvetica Neue", "Helvetica";
+}
+#title #engineer
+{
+  color: #819FB1;
+  font-family: 'WCWunderbachBtaDemiBold', "Helvetica Neue", "Helvetica";
 }
 
 #users {
